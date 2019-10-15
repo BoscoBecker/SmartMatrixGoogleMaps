@@ -58,6 +58,8 @@
       height: 36px;
       cursor: pointer;
       padding: 0 24px;
+      margin-left: 12px;
+      border: 1px solid #dadce0;
     }
 
     #divLocation {
@@ -65,16 +67,17 @@
       float: bottom;
       background-color: white;
       display: none;
-      top: 50px;
+      top: 40px;
       left: 5px;
       z-index: 100;
       border-radius: 3px;
-      background-image: url("https://static.wixstatic.com/media/fde57d_77bce27135564fb99af9131eeb2a1132~mv2.png/v1/fill/w_221,h_74,al_c,usm_0.66_1.00_0.01/logo.png");
+      background-image: url("img/logo.png");
       width: 235px;
       background-repeat: no-repeat;
       margin-left: auto;
       margin-right: auto;
       border-radius: 4px;
+      border: 1px solid #dadce0;
     }
   </style>
 
@@ -170,21 +173,13 @@
         var tamanho;
         div = document.getElementById("divLocation");
         div.innerHTML = "<br>" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>" + "<br>" + tipoDesenho +
-          "<br>" + "<b>Coordenadas:</b>" + valorPeloTipoDesenho.trim() + "<br>" + "<br>" +
-          botaoDeletar + "<br>" + "<br>" +
-          '<p style="font-size: 10px">Nota* Ao alterar a largura ou altura de algum objeto ou forma, é necessário clicar no mesmo ' +
-          'para atualizar as coordenadas</p>';
+                        "<br>" + "<b>Coordenadas:</b>" + valorPeloTipoDesenho.trim() + 
+                        "<br>" + "<br>" + botaoDeletar + 
+                        "<br>" + "<br>" +
+                        '<p style="font-size: 10px">Nota* Ao alterar a largura ou altura de algum objeto ou forma, '+
+                        'é necessário clicar no mesmo para atualizar as coordenadas</p>';
         tamanho = valorPeloTipoDesenho.length;
         div.style.display.height = tamanho;
-
-        var infoWindow;
-        infoWindow = new google.maps.InfoWindow;
-        infoWindow.setPosition(map.position);
-        infoWindow.setContent('Sua localização');
-        infoWindow.open(map);
-
-        map.setCenter(map.position);
-
 
         // Settings Panel info
         document.getElementById("divLocation").style.fontSize = "12px";
@@ -196,8 +191,6 @@
         $("#divLocation").fadeIn("slow");
         google.maps.event.addDomListener(document.getElementById('delete-forma'), 'click', deletarFormaeOcultarDiv);
         google.maps.event.addListener(map, 'click', clearSelection);
-
-
       }
     }
 
@@ -219,7 +212,6 @@
 
     function criaAlert() {
       alert('boao direito');
-
       
     }
 
@@ -227,10 +219,6 @@
       if (selectedShape) {
         selectedShape.setMap(null);
       }
-    }
-
-    function criaAlert() {
-      alert('boao direito');
     }
 
     function selectColor(color) {
@@ -319,7 +307,7 @@
        */
         map = new google.maps.Map(document.getElementById('map'), {
         zoom: 5,
-        center: new google.maps.LatLng(-25.4950501, -49.4298839), // CURITIBA - Brazil
+        center: new google.maps.LatLng(-25.4950501, -49.4298839), // CURITIBA - BRAZIL
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         disableDefaultUI: false,
         zoomControl: true,
@@ -334,10 +322,8 @@
         fullscreenControl: true
       });
       
-      var infoFindeLocation= "";
-      infoFindeLocation =  map.position;
-
-      infoWindow = new google.maps.InfoWindow;   
+      
+      var infoWindow = new google.maps.InfoWindow;   
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -350,27 +336,26 @@
            lng: position.coords.longitude
           };
 
-          infoWindow.setPosition(pos);
-          console.log(pos);
-          infoWindow.setContent('Localização encontrada'   + '<br>' + 
-                                'Coordenadas:'             + '<br>' + 
-                                'Latitude: ' + strAuxLat   + '<br>' + 
+         infoWindow.setPosition(pos);
+         infoWindow.setContent('Localização encontrada'   + '<br>' + 
+                                'Coordenadas:'            + '<br>' + 
+                                'Latitude: ' + strAuxLat  + '<br>' + 
                                 'Longitude:' + strAuxLng);
           infoWindow.open(map);
           map.setCenter(pos);
         }, function () {
-         // handleLocationError(true, infoWindow, map.getCenter());
+          //handleLocationError(true, infoWindow, map.getCenter());
         });
       } else {
         // Browser doesn't support Geolocation
-        //handleLocationError(false, infoWindow, map.getCenter());
+       // handleLocationError(false, infoWindow, map.getCenter());
       }
   
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       infoWindow.setPosition(pos);
       infoWindow.setContent(browserHasGeolocation ?
-        'Error: The Geolocation service failed.' :
-        'Error: Your browser doesn\'t support geolocation.');
+                            'Error: The Geolocation service failed.' :
+                            'Error: Your browser doesn\'t support geolocation.');
       infoWindow.open(map);
     }
       curposdiv = document.getElementById('curpos');
@@ -431,6 +416,7 @@
       buildColorPalette();
 
       input = /** @type {HTMLInputElement} */(document.getElementById('pac-input'));
+
       map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
       searchBox = new google.maps.places.SearchBox( 
           /** @type {HTMLInputElement} */(input));
@@ -483,7 +469,9 @@
         curposdiv.innerHTML = "<b>curpos</b> Z: " + map.getZoom() + " C: " + map.getCenter().toUrlValue();
       });
     }
+    
     google.maps.event.addDomListener(window, 'load', initialize);
+
   </script>
 </head>
 <body>
@@ -498,7 +486,10 @@
   <input id="pac-input" type="text" placeholder="Search Box" hidden>
   <div id="map"></div>
   <div id="divLocation">
-  <button id="delete-forma">Excluir forma selecionada</button>
+ 
+
+   <button id="delete-forma">Excluir forma selecionada</button>
   </div>
-</body>
+
+ </body>
 </html>
