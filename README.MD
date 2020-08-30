@@ -2,9 +2,8 @@
 
 ![Screenshot](img/printApiSmartMatrix.png)
 
-
-# Projeto permite localização, usando API v3 do GoogleMaps, com ele
-é possível criar polígonos, realizar marcação e obter coordenadas usando TypeScript/Javascript.
+# Projeto permite localização, usando API v3 do GoogleMaps
+Nesse projeto é possível criar polígonos, realizar marcação e obter coordenadas usando TypeScript/Javascript.
 
 # Sobre API V3 Google Maps
 
