@@ -2,13 +2,12 @@
 
 ![Screenshot](img/printApiSmartMatrix.png)
 
-# Projeto permite localização, usando API v3 do GoogleMaps
-Nesse projeto é possível criar polígonos, realizar marcação e obter coordenadas usando TypeScript/Javascript.
+# Project allows localization, using GoogleMaps API v3
+In this project it is possible to create polygons, mark up and obtain coordinates using TypeScript / Javascript.
 
-# Sobre API V3 Google Maps
+# About API V3 Google Maps
 
-Este é um índice de todas as classes, métodos e interfaces no Maps JavaScript API versão 3.42 (canal semanal). Esta referência é mantida atualizada com as últimas alterações na API.
-
+This is an index of all classes, methods and interfaces in Maps JavaScript API version 3.42 (weekly channel). This reference is kept up to date with the latest changes in the API. 
 Sobre: https://developers.google.com/maps/documentation/javascript/reference
 
-Make With Love - @boscobecker
+Make With Love ❤ @boscobecker
